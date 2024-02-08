@@ -81,9 +81,7 @@ int main()
     c3.print();
     cout << endl;
     //for norm
-    //c3.norm();
-    //c3.compexConjugate();
-   
-
+    c3.norm(c3);
+    c3.compexConjugate();
     return 0;
 }

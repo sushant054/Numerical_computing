@@ -15,7 +15,7 @@ public:
     void sub(MyComplex, MyComplex);
     void mul(MyComplex, MyComplex);
     void div(MyComplex, MyComplex);
-    //void norm(MyComplex);
-    //void compexConjugate();
+    void norm(MyComplex);
+    void compexConjugate();
 
 };
