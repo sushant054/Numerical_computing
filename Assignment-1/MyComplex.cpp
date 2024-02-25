@@ -40,3 +40,4 @@ void MyComplex::compexConjugate()
     // The complex conjugate of a complex number a+bi is a-bi
     cout << "Complex Conjugate: " << real << "-" << img << "i" << endl;
 }
+ 
