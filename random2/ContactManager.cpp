@@ -83,6 +83,7 @@ cout<<"Edited list::";
 list();
 }
 
+
 void ContactManager::editEmail()
 {
 list();
@@ -108,12 +109,111 @@ void ContactManager::removeUser()
     cout << "User removed!!!!\n";
     cout<<"now remaining list is :";
     list();
-
 }
 
 void ContactManager::removeUserName()
 {
-  
+list();
+//ask user to select which user's number..to be edited
+cout<<"\n select user to remove Name::";
+int id;
+cin>>id;
+data[id-1].name=" ";
+cout<<"user name removed succes...";
+cout<<"Edited list::";
+list();
 }
+
+void ContactManager::removeUserNumber()
+{
+list();
+//ask user to select which user's number..to be edited
+cout<<"\n select user to remove Number::";
+int id;
+cin>>id;
+data[id-1].number= 0;
+cout<<"user number removed succes...";
+cout<<"Edited list::";
+list();
+}
+
+void ContactManager::removeUserEmail()
+{
+list();
+//ask user to select which user's number..to be edited
+cout<<"\n select user to remove Email::";
+int id;
+cin>>id;
+data[id-1].email=" ";
+cout<<"user email removed succes...";
+cout<<"Edited list::";
+list();
+}
+
+
+void ContactManager::searchName()
+{
+    cout << "Enter the name you want to search for: ";
+    string searchName;
+    cin >> searchName;
+
+    bool found = false;
+    for (size_t i = 0; i < data.size(); ++i) {
+        if (data[i].name == searchName) {
+            found = true;
+            cout << "\nTitle: " << data[i].title << "\nName: " << data[i].name << "\nPhone Number: " << data[i].number << "\nEmail: " << data[i].email << endl;
+        }
+    }
+
+    if (!found) {
+        cout << "No name found!!!.\n";
+    }
+}
+
+void ContactManager::searchEmail()
+{
+    cout << "Enter the number you want to search for: ";
+    string searchEmail;
+    cin >> searchEmail;
+
+    bool found = false;
+    for (size_t i = 0; i < data.size(); ++i) {
+        if (data[i].email == searchEmail) {
+            found = true;
+            cout << "\nTitle: " << data[i].title << "\nName: " << data[i].name << "\nPhone Number: " << data[i].number << "\nEmail: " << data[i].email << endl;
+        }
+    }
+
+    if (!found) {
+        cout << "No Email found!!!.\n";
+    }
+}
+
+
+void ContactManager::backUp()
+{
+    ofstream outFile("backup.txt");
+     if (outFile.is_open()) 
+     {
+        for (const auto& entry : data) 
+        {
+            outFile << entry.title << "," << entry.name << "," << entry.number << "," << entry.email << endl;
+        }
+        outFile.close();
+        cout << "Backup created successfully!\n";
+    } else 
+    {
+        cout << "Unable to create backup file!\n";
+    }
+}
+
+void ContactManager::restore()
+{
+    
+
+}
+
+
+
 
 

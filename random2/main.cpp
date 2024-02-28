@@ -11,7 +11,13 @@ int main()
     cm.editName();
     cm.editEmail();
     cm.removeUser();
-    cm.removeUserName();//
+    cm.removeUserName();
+    cm.removeUserNumber();
+    cm.removeUserEmail();
+    cm.searchName();
+    cm.searchNumber();
+    cm.searchEmail();
+    cm.backUp();
     return 0;
 }
  
