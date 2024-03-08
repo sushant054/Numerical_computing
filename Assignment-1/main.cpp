@@ -37,10 +37,11 @@ using namespace std;
 
 int main()
 {
-    MyComplex c1, c2, c3,c4,c5 ;
+    MyComplex c1, c2, c3,c4,c5;
 
     c1.print();
 
+    
     c1.real = 10;
     c1.img = 5;
 
