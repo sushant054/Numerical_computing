@@ -82,6 +82,7 @@ int main()
     cout << endl;
     //for norm
     c3.norm(c3);
+    //for complexconjugate
     c3.compexConjugate();
     return 0;
 }
