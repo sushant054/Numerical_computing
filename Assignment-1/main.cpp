@@ -78,7 +78,7 @@ int main()
     cout << endl;
 
     c3.mul(c1, c2);
-
+    
     c3.print();
     cout << endl;
     //for norm
@@ -87,3 +87,8 @@ int main()
     c3.compexConjugate();
     return 0;
 }
+
+
+
+
+
