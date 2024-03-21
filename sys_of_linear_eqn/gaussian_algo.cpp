@@ -1,64 +1,81 @@
- #include<bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-void printMatrix(double **mat, int rows, int cols)
-{
-      for(int i=0;i<rows;i++)
-    {
-        for(int j=0;j<cols;j++){
-                cout<<mat[i][j]<<" ";
-                cout<<endl;
+void printMatrix(vector<vector<double>>& mat) {
+    for (const auto& row : mat) {
+        for (double element : row) {
+            cout << element << " ";
         }
+        cout << endl;
     }
-
 }
-int main()
-{
-    string fileName_L="L_3.txt";
-    string fileName_R="R_3.txt";
+
+int main() {
+    string fileName_L = "L_3.txt";
+    string fileName_R = "R_3.txt";
 
     ifstream fin;
     fin.open(fileName_L);
     
+    if (!fin.is_open()) {
+        cerr << "Error opening file: " << fileName_L << endl;
+        return 1;
+    }
+
     int rows, cols;
     fin >> rows >> cols;
 
-    cout <<"\n rows::"<< rows<<"\t cols::"<<cols<<endl;
-    //dynamic memory allocation
-    double mat[rows][cols];
-    for(int i=0;i<rows;i++)
-    {
-        for(int j=0;j<(cols-1);j++){
-                fin>>mat[i][j];
+    cout << "\n rows::" << rows << "\t cols::" << cols << endl;
+    
+    // Dynamic memory allocation
+    vector<vector<double>> mat(rows, vector<double>(cols));
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < (cols - 1); j++) {
+            fin >> mat[i][j];
         }
     }
 
+    fin.close();
 
-     for(int i=0;i<rows;i++)
-    {
-        for(int j=0;j<(cols-1);j++){
-                cout<<mat[i][j]<<" ";
-                
-        }
+    fin.open(fileName_R);
     
-    cout <<endl;
-    }    
-        fin.close();
-        fin.open(fileName_R);
-         for(int i=0;i<rows;i++){
-                fin>>mat[i][cols-1];
+    if (!fin.is_open()) {
+        cerr << "Error opening file: " << fileName_R << endl;
+        return 1;
+    }
+
+    for (int i = 0; i < rows; i++) {
+        fin >> mat[i][cols - 1];
+    }
+
+    cout << "\n Augmented matrix is :: \n";
+    printMatrix(mat);
+    fin.close();
+
+    // Gaussian elimination
+    for (int r = 0; r < rows; r++) {
+        double pivot = mat[r][r];
+        for (int c = r; c < cols; c++) {
+            mat[r][c] /= pivot;
         }
-        cout<<"\n Augumented matrix is :: \n";
-        for(int i=0; i<rows; i++)
-        {
-            for(int j=0;j<cols;j++){
-                cout<<mat[i][j]<<" ";
-            
+        for (int k = 0; k < rows; k++) {
+            if (k != r) {
+                double factor = mat[k][r];
+                for (int c = r; c < cols; c++) {
+                    mat[k][c] -= factor * mat[r][c];
+                }
             }
-            cout<<endl;
         }
-           fin.close();
-    
-        return 0;
-        
+        cout << "\n++++++++++++++++++++\n";
+        printMatrix(mat);
+    }
+    //back sub.
+  cout << "\nSolution:\n";
+    for (int i = 0; i < rows; i++) {
+        cout << "x" << i + 1 << " = " << mat[i][cols - 1] << endl;
+    }
+
+    return 0;
 }
+
